@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fetch API</title>
+  </head>
+  <body>
+    <div>
+      <button id="btn">get a pic</button>
+      <ul id="imgs"></ul>
+      <!--first empty to be able to append-->
+    </div>
+    <script>
+      let btn = document.getElementById('btn');
+      if (btn) {
+        let img;
+        btn.onclick = () => {
+          img = document.createElement('img');
+          var data;
+          fetch('https://dog.ceo/api/breeds/image/random', {
+            method: 'GET',
+            body: JSON.stringify(data),
+          })
+            .then((res) => {
+              res
+                .json()
+                .then((obj) => {
+                  console.log(obj);
+                  img.src = obj.message;
+                })
+                .catch((err) => console.log(err));
+            })
+            .catch((err) => {
+              alert('Error fetching data!');
+            });
+          document.getElementById('imgs').append(img);
+        };
+      }
+    </script>
+  </body>
+</html>
